@@ -52,15 +52,17 @@ ESP8266HTTPUpdateServer httpUpdateServer;
 
 #include "FSBrowser.h"
 
-#define DATA_PIN      D5
+#define DATA_PIN      12 //D1 mini: D5
 #define LED_TYPE      WS2811
-#define COLOR_ORDER   RGB
-#define NUM_LEDS      200
+#define COLOR_ORDER   GRB //change this to correct value
+#define NUM_LEDS      105
 
-#define MILLI_AMPS         2000 // IMPORTANT: set the max milli-Amps of your power supply (4A = 4000mA)
+//does below work with brightness?
+#define MILLI_AMPS         200 // IMPORTANT: set the max milli-Amps of your power supply (4A = 4000mA)
+//#define MILLI_AMPS         2000 // IMPORTANT: set the max milli-Amps of your power supply (4A = 4000mA)
 #define FRAMES_PER_SECOND  120  // here you can control the speed. With the Access Point / Web Server the animations run a bit slower.
 
-const bool apMode = false;
+const bool apMode = true;
 
 #include "Secrets.h" // this file is intentionally not included in the sketch, so nobody accidentally commits their secret information.
 // create a Secrets.h file with the following:
@@ -76,7 +78,8 @@ const bool apMode = false;
 CRGB leds[NUM_LEDS];
 
 const uint8_t brightnessCount = 5;
-uint8_t brightnessMap[brightnessCount] = { 16, 32, 64, 128, 255 };
+uint8_t brightnessMap[brightnessCount] = { 1, 3, 6, 12, 25 };
+//uint8_t brightnessMap[brightnessCount] = { 16, 32, 64, 128, 255 };
 uint8_t brightnessIndex = 0;
 
 // ten seconds per color palette makes a good demo
@@ -1019,6 +1022,7 @@ void sinelon()
     fill_solid( leds + prevpos, (pos - prevpos) + 1, color);
   }
   prevpos = pos;
+  Serial.println("sinelon");
 }
 
 void bpm()

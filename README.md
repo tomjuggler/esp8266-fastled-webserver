@@ -1,3 +1,11 @@
+Open AP only fork of https://github.com/jasoncoon/esp8266-fastled-webserver
+For WS2812 LED Strip
+Tutorial on circusscientist.com
+
+Please note: secrets.h is included in this fork, however it is not used except for blank (open) AP password. 
+If you are looking for an internet connected thing, please check out the original. 
+
+
 FastLED + ESP8266 Web Server
 =========
 
